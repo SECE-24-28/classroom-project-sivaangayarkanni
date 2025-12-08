@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Recharge App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: 
+                linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 50%, rgba(51, 65, 85, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=2074&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            transform: translateY(-2px);
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="header-gradient text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold flex items-center">
+                <i class="fas fa-mobile-alt mr-2"></i>
+                Mobile Recharge App
+            </h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="login.html" class="hover:underline">Login</a></li>
+                    <li><a href="signup.html" class="hover:underline">Sign Up</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center p-4">
+        <div class="container mx-auto max-w-6xl">
+            <!-- Hero Section -->
+            <section class="card p-8 mb-8 text-center">
+                <h2 class="text-4xl font-bold text-slate-800 mb-4">Welcome to Mobile Recharge</h2>
+                <p class="text-xl text-gray-600 mb-8">Fast, secure, and convenient mobile recharge with premium features</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="login.html" class="btn-gradient text-white px-8 py-3 rounded-lg font-semibold">
+                        <i class="fas fa-sign-in-alt mr-2"></i>Get Started
+                    </a>
+                    <a href="test.html" class="bg-gray-200 text-gray-800 px-8 py-3 rounded-lg font-semibold hover:bg-gray-300">
+                        <i class="fas fa-flask mr-2"></i>Test API
+                    </a>
+                </div>
+            </section>
+
+            <!-- Features Grid -->
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="card p-6 text-center">
+                    <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bolt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Quick Recharge</h3>
+                    <p class="text-gray-600">Instant mobile recharge for all operators</p>
+                    <a href="recharge.html" class="inline-block mt-4 text-blue-600 hover:underline">Try Now →</a>
+                </div>
+
+                <div class="card p-6 text-center">
+                    <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-crown text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Premium Plans</h3>
+                    <p class="text-gray-600">Netflix-like subscription with exclusive benefits</p>
+                    <a href="subscriptions.html" class="inline-block mt-4 text-purple-600 hover:underline">View Plans →</a>
+                </div>
+
+                <div class="card p-6 text-center">
+                    <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-gift text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Special Offers</h3>
+                    <p class="text-gray-600">Cashback and discounts on every recharge</p>
+                    <a href="offers.html" class="inline-block mt-4 text-green-600 hover:underline">View Offers →</a>
+                </div>
+
+                <div class="card p-6 text-center">
+                    <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-chart-bar text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Analytics</h3>
+                    <p class="text-gray-600">Real-time insights and transaction history</p>
+                    <a href="analytics.html" class="inline-block mt-4 text-red-600 hover:underline">View Analytics →</a>
+                </div>
+
+                <div class="card p-6 text-center">
+                    <div class="w-16 h-16 bg-yellow-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-user-shield text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Admin Panel</h3>
+                    <p class="text-gray-600">Manage users and monitor transactions</p>
+                    <a href="admin.html" class="inline-block mt-4 text-yellow-600 hover:underline">Admin Access →</a>
+                </div>
+
+                <div class="card p-6 text-center">
+                    <div class="w-16 h-16 bg-indigo-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-tachometer-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Dashboard</h3>
+                    <p class="text-gray-600">Personal dashboard with quick actions</p>
+                    <a href="dashboard.html" class="inline-block mt-4 text-indigo-600 hover:underline">Go to Dashboard →</a>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white p-4 text-center">
+        <p>&copy; 2024 Mobile Recharge App. All rights reserved.</p>
+    </footer>
+
+    <script src="api.js"></script>
+</body>
+</html>

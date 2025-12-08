@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Special Offers - Mobile Recharge App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: 
+                linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 50%, rgba(51, 65, 85, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1607703703520-bb638e84caf2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .offer-card {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .offer-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e11d48, #f59e0b, #10b981, #3b82f6);
+        }
+        .limited-time {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            animation: pulse 2s infinite;
+        }
+        .cashback-badge {
+            background: linear-gradient(45deg, #00d2d3, #54a0ff);
+            animation: bounce 2s infinite;
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="header-gradient text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold flex items-center">
+                <i class="fas fa-gift mr-2 text-yellow-400"></i>
+                Special Offers
+            </h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="hover:underline">Home</a></li>
+                    <li><a href="dashboard.html" class="hover:underline">Dashboard</a></li>
+                    <li><a href="recharge.html" class="hover:underline">Recharge</a></li>
+                    <li><a href="subscriptions.html" class="hover:underline">Premium</a></li>
+                    <li><a href="login.html" class="hover:underline">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow p-4">
+        <div class="container mx-auto max-w-7xl">
+            <!-- Featured Offer Banner -->
+            <section class="card p-6 mb-8 bg-gradient-to-r from-purple-600 via-pink-600 to-red-600 text-white">
+                <div class="text-center">
+                    <h2 class="text-4xl font-bold mb-4">🎉 MEGA CASHBACK FESTIVAL 🎉</h2>
+                    <p class="text-xl mb-4">Get up to 50% cashback on all recharges!</p>
+                    <div class="flex justify-center items-center space-x-4 mb-4">
+                        <div class="bg-white bg-opacity-20 px-4 py-2 rounded-lg">
+                            <span class="text-2xl font-bold">2</span>
+                            <p class="text-sm">Days</p>
+                        </div>
+                        <div class="bg-white bg-opacity-20 px-4 py-2 rounded-lg">
+                            <span class="text-2xl font-bold">14</span>
+                            <p class="text-sm">Hours</p>
+                        </div>
+                        <div class="bg-white bg-opacity-20 px-4 py-2 rounded-lg">
+                            <span class="text-2xl font-bold">32</span>
+                            <p class="text-sm">Minutes</p>
+                        </div>
+                    </div>
+                    <button class="bg-white text-purple-600 px-8 py-3 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors">
+                        Claim Now!
+                    </button>
+                </div>
+            </section>
+
+            <!-- Offer Categories -->
+            <section class="mb-8">
+                <div class="flex justify-center space-x-4 mb-6">
+                    <button class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold">All Offers</button>
+                    <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-300">Cashback</button>
+                    <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-300">Discounts</button>
+                    <button class="bg-gray-200 text-gray-700 px-6 py-2 rounded-lg font-semibold hover:bg-gray-300">Premium</button>
+                </div>
+            </section>
+
+            <!-- Offers Grid -->
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Cashback Offer -->
+                <div class="offer-card p-6 text-white">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="cashback-badge text-black px-3 py-1 rounded-full text-sm font-bold">
+                            30% CASHBACK
+                        </div>
+                        <i class="fas fa-money-bill-wave text-2xl text-green-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Airtel Cashback Bonanza</h3>
+                    <p class="text-gray-300 mb-4">Get 30% cashback on Airtel recharges above ₹199</p>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-400">Valid till: Dec 31, 2024</p>
+                        <p class="text-sm text-gray-400">Max cashback: ₹100</p>
+                    </div>
+                    <button class="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded-lg font-semibold transition-colors">
+                        Use Offer
+                    </button>
+                </div>
+
+                <!-- Limited Time Offer -->
+                <div class="offer-card p-6 text-white">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="limited-time text-white px-3 py-1 rounded-full text-sm font-bold">
+                            LIMITED TIME
+                        </div>
+                        <i class="fas fa-clock text-2xl text-red-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Flash Sale - Jio Plans</h3>
+                    <p class="text-gray-300 mb-4">Flat 25% off on all Jio prepaid plans</p>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-400">Valid for: Next 6 hours</p>
+                        <p class="text-sm text-gray-400">Min recharge: ₹149</p>
+                    </div>
+                    <button class="w-full bg-red-500 hover:bg-red-600 text-white py-2 rounded-lg font-semibold transition-colors">
+                        Grab Deal
+                    </button>
+                </div>
+
+                <!-- Premium Offer -->
+                <div class="offer-card p-6 text-white border-2 border-yellow-400">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="bg-yellow-400 text-black px-3 py-1 rounded-full text-sm font-bold">
+                            PREMIUM ONLY
+                        </div>
+                        <i class="fas fa-crown text-2xl text-yellow-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Premium Member Exclusive</h3>
+                    <p class="text-gray-300 mb-4">Extra 15% cashback on top of regular offers</p>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-400">For Premium+ members</p>
+                        <p class="text-sm text-gray-400">No minimum amount</p>
+                    </div>
+                    <button class="w-full bg-yellow-400 hover:bg-yellow-500 text-black py-2 rounded-lg font-semibold transition-colors">
+                        Activate
+                    </button>
+                </div>
+
+                <!-- Vodafone Offer -->
+                <div class="offer-card p-6 text-white">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="bg-purple-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            SPECIAL DEAL
+                        </div>
+                        <i class="fas fa-mobile-alt text-2xl text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Vodafone Double Data</h3>
+                    <p class="text-gray-300 mb-4">Get double data on Vodafone plans above ₹299</p>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-400">Valid till: Jan 15, 2025</p>
+                        <p class="text-sm text-gray-400">Applicable on select plans</p>
+                    </div>
+                    <button class="w-full bg-purple-500 hover:bg-purple-600 text-white py-2 rounded-lg font-semibold transition-colors">
+                        Avail Offer
+                    </button>
+                </div>
+
+                <!-- Referral Offer -->
+                <div class="offer-card p-6 text-white">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            REFER & EARN
+                        </div>
+                        <i class="fas fa-user-friends text-2xl text-blue-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">Invite Friends</h3>
+                    <p class="text-gray-300 mb-4">Earn ₹100 for each friend who joins and recharges</p>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-400">No limit on referrals</p>
+                        <p class="text-sm text-gray-400">Instant credit to wallet</p>
+                    </div>
+                    <button class="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg font-semibold transition-colors">
+                        Share Link
+                    </button>
+                </div>
+
+                <!-- BSNL Offer -->
+                <div class="offer-card p-6 text-white">
+                    <div class="flex justify-between items-start mb-4">
+                        <div class="bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-bold">
+                            WEEKEND SPECIAL
+                        </div>
+                        <i class="fas fa-calendar-weekend text-2xl text-orange-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">BSNL Weekend Bonanza</h3>
+                    <p class="text-gray-300 mb-4">20% extra validity on weekend recharges</p>
+                    <div class="mb-4">
+                        <p class="text-sm text-gray-400">Saturdays & Sundays only</p>
+                        <p class="text-sm text-gray-400">All BSNL plans eligible</p>
+                    </div>
+                    <button class="w-full bg-orange-500 hover:bg-orange-600 text-white py-2 rounded-lg font-semibold transition-colors">
+                        Recharge Now
+                    </button>
+                </div>
+            </section>
+
+            <!-- Terms & Conditions -->
+            <section class="card p-6 mt-8">
+                <h3 class="text-xl font-bold mb-4 text-slate-800">Terms & Conditions</h3>
+                <ul class="text-sm text-gray-600 space-y-2">
+                    <li>• Offers are valid for limited time and subject to availability</li>
+                    <li>• Cashback will be credited within 24-48 hours of successful recharge</li>
+                    <li>• Premium offers are exclusive to Premium and Premium Plus subscribers</li>
+                    <li>• Maximum cashback limits apply as mentioned in individual offers</li>
+                    <li>• Offers cannot be combined with other promotional codes</li>
+                    <li>• Company reserves the right to modify or cancel offers without prior notice</li>
+                </ul>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white p-4 text-center">
+        <p>&copy; 2024 Mobile Recharge App. All rights reserved.</p>
+    </footer>
+
+    <script src="api.js"></script>
+    <script>
+        // Countdown timer for featured offer
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const endTime = now + (2 * 24 * 60 * 60 * 1000) + (14 * 60 * 60 * 1000) + (32 * 60 * 1000);
+            
+            setInterval(() => {
+                const now = new Date().getTime();
+                const distance = endTime - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                
+                // Update display (simplified for demo)
+                console.log(`${days}d ${hours}h ${minutes}m`);
+            }, 1000);
+        }
+        
+        updateCountdown();
+    </script>
+</body>
+</html>
