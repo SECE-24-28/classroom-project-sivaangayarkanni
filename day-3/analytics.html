@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard - Mobile Recharge App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background: 
+                linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 50%, rgba(51, 65, 85, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: slideUp 0.8s ease-out;
+        }
+        .metric-card {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        .metric-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="header-gradient text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold flex items-center">
+                <i class="fas fa-chart-line mr-2 text-blue-400"></i>
+                Analytics Dashboard
+            </h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="hover:underline">Home</a></li>
+                    <li><a href="admin.html" class="hover:underline">Admin</a></li>
+                    <li><a href="dashboard.html" class="hover:underline">Dashboard</a></li>
+                    <li><a href="login.html" class="hover:underline">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="flex-grow p-4">
+        <div class="container mx-auto max-w-7xl space-y-6">
+            <!-- Key Metrics -->
+            <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="metric-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm opacity-80">Total Revenue</p>
+                            <p class="text-3xl font-bold">₹2,45,000</p>
+                            <p class="text-sm text-green-400">+15.3% from last month</p>
+                        </div>
+                        <i class="fas fa-rupee-sign text-3xl text-green-400"></i>
+                    </div>
+                </div>
+                
+                <div class="metric-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm opacity-80">Active Users</p>
+                            <p class="text-3xl font-bold">1,247</p>
+                            <p class="text-sm text-blue-400">+8.2% from last month</p>
+                        </div>
+                        <i class="fas fa-users text-3xl text-blue-400"></i>
+                    </div>
+                </div>
+                
+                <div class="metric-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm opacity-80">Transactions</p>
+                            <p class="text-3xl font-bold">3,456</p>
+                            <p class="text-sm text-purple-400">+22.1% from last month</p>
+                        </div>
+                        <i class="fas fa-exchange-alt text-3xl text-purple-400"></i>
+                    </div>
+                </div>
+                
+                <div class="metric-card p-6">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-sm opacity-80">Success Rate</p>
+                            <p class="text-3xl font-bold">98.7%</p>
+                            <p class="text-sm text-emerald-400">+0.5% from last month</p>
+                        </div>
+                        <i class="fas fa-check-circle text-3xl text-emerald-400"></i>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts Section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <!-- Revenue Chart -->
+                <section class="card p-6">
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">Revenue Trend</h3>
+                    <div class="chart-container">
+                        <canvas id="revenueChart"></canvas>
+                    </div>
+                </section>
+
+                <!-- User Growth Chart -->
+                <section class="card p-6">
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">User Growth</h3>
+                    <div class="chart-container">
+                        <canvas id="userChart"></canvas>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Operator Performance -->
+            <section class="card p-6">
+                <h3 class="text-xl font-bold mb-6 text-slate-800">Operator Performance</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    <div class="bg-gradient-to-r from-red-500 to-red-600 text-white p-4 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold">Airtel</h4>
+                                <p class="text-2xl font-bold">35%</p>
+                                <p class="text-sm opacity-80">Market Share</p>
+                            </div>
+                            <i class="fas fa-signal text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold">Jio</h4>
+                                <p class="text-2xl font-bold">30%</p>
+                                <p class="text-sm opacity-80">Market Share</p>
+                            </div>
+                            <i class="fas fa-wifi text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold">Vodafone</h4>
+                                <p class="text-2xl font-bold">25%</p>
+                                <p class="text-sm opacity-80">Market Share</p>
+                            </div>
+                            <i class="fas fa-mobile-alt text-2xl"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <h4 class="font-semibold">BSNL</h4>
+                                <p class="text-2xl font-bold">10%</p>
+                                <p class="text-sm opacity-80">Market Share</p>
+                            </div>
+                            <i class="fas fa-tower-broadcast text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Activity -->
+            <section class="card p-6">
+                <h3 class="text-xl font-bold mb-6 text-slate-800">Recent Activity</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-green-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-check text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Successful recharge</p>
+                                <p class="text-sm text-gray-600">₹299 - Jio Prepaid</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500">2 minutes ago</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-user-plus text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">New user registration</p>
+                                <p class="text-sm text-gray-600">Premium subscription</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500">5 minutes ago</span>
+                    </div>
+                    
+                    <div class="flex items-center justify-between p-4 bg-gray-50 rounded-lg">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-purple-500 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-crown text-white"></i>
+                            </div>
+                            <div>
+                                <p class="font-semibold">Subscription upgrade</p>
+                                <p class="text-sm text-gray-600">Basic to Premium Plus</p>
+                            </div>
+                        </div>
+                        <span class="text-sm text-gray-500">10 minutes ago</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white p-4 text-center">
+        <p>&copy; 2024 Mobile Recharge App. All rights reserved.</p>
+    </footer>
+
+    <script src="api.js"></script>
+    <script>
+        // Initialize Charts
+        document.addEventListener('DOMContentLoaded', function() {
+            // Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Revenue (₹)',
+                        data: [180000, 195000, 210000, 225000, 235000, 245000],
+                        borderColor: '#0f172a',
+                        backgroundColor: 'rgba(15, 23, 42, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return '₹' + (value / 1000) + 'K';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // User Growth Chart
+            const userCtx = document.getElementById('userChart').getContext('2d');
+            new Chart(userCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'New Users',
+                        data: [120, 145, 160, 180, 195, 210],
+                        backgroundColor: 'rgba(15, 23, 42, 0.8)',
+                        borderColor: '#0f172a',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

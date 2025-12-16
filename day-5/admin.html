@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Mobile Recharge App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: 
+                linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 50%, rgba(51, 65, 85, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2340&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                repeating-linear-gradient(45deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+            pointer-events: none;
+            z-index: 0;
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.1), 
+                0 0 0 1px rgba(255, 255, 255, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(15px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 1;
+            animation: slideUp 0.8s ease-out;
+        }
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+            border-radius: 20px;
+            pointer-events: none;
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #0f172a, #1e293b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .stat-card {
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+            border-left: 4px solid #475569;
+        }
+        .stat-card.green {
+            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+            border-left-color: #065f46;
+        }
+        .stat-card.yellow {
+            background: linear-gradient(135deg, #fefce8 0%, #fef3c7 100%);
+            border-left-color: #a16207;
+        }
+        .stat-card {
+            transition: all 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .floating-circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            animation: floatCircle 12s infinite ease-in-out;
+        }
+        .floating-circle:nth-child(1) {
+            width: 140px;
+            height: 140px;
+            top: 8%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        .floating-circle:nth-child(2) {
+            width: 200px;
+            height: 200px;
+            top: 35%;
+            right: 5%;
+            animation-delay: 4s;
+        }
+        .floating-circle:nth-child(3) {
+            width: 110px;
+            height: 110px;
+            bottom: 8%;
+            left: 10%;
+            animation-delay: 8s;
+        }
+        @keyframes floatCircle {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-35px) rotate(180deg); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <div class="floating-elements">
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+        <div class="floating-circle"></div>
+    </div>
+    <header class="header-gradient text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold flex items-center">
+                <i class="fas fa-shield-alt mr-2"></i>
+                Admin Dashboard
+            </h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="hover:underline">Home</a></li>
+                    <li><a href="dashboard.html" class="hover:underline">Dashboard</a></li>
+                    <li><a href="analytics.html" class="hover:underline">Analytics</a></li>
+                    <li><a href="login.html" class="hover:underline">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="flex-grow p-4">
+        <div class="container mx-auto max-w-6xl space-y-6">
+            <section class="card p-6">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-users text-2xl text-red-600 mr-3"></i>
+                    <h2 class="text-2xl font-semibold gradient-text">User Management</h2>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full table-auto">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Email</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-4 py-3 whitespace-nowrap font-medium">1</td>
+                                <td class="px-4 py-3 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center mr-3">
+                                            <span class="text-white text-sm font-semibold">JD</span>
+                                        </div>
+                                        John Doe
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 whitespace-nowrap text-gray-600">john@example.com</td>
+                                <td class="px-4 py-3 whitespace-nowrap"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold flex items-center w-fit"><i class="fas fa-check-circle mr-1"></i>Active</span></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-4 py-3 whitespace-nowrap font-medium">2</td>
+                                <td class="px-4 py-3 whitespace-nowrap">
+                                    <div class="flex items-center">
+                                        <div class="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center mr-3">
+                                            <span class="text-white text-sm font-semibold">JS</span>
+                                        </div>
+                                        Jane Smith
+                                    </div>
+                                </td>
+                                <td class="px-4 py-3 whitespace-nowrap text-gray-600">jane@example.com</td>
+                                <td class="px-4 py-3 whitespace-nowrap"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold flex items-center w-fit"><i class="fas fa-check-circle mr-1"></i>Active</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="card p-6">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-exchange-alt text-2xl text-red-600 mr-3"></i>
+                    <h3 class="text-xl font-semibold gradient-text">Transaction History</h3>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full table-auto">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">User</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Amount</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th class="px-4 py-2 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-4 py-3 whitespace-nowrap font-medium">#101</td>
+                                <td class="px-4 py-3 whitespace-nowrap">John Doe</td>
+                                <td class="px-4 py-3 whitespace-nowrap font-semibold text-green-600">₹199</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-gray-600">2023-10-01</td>
+                                <td class="px-4 py-3 whitespace-nowrap"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold flex items-center w-fit"><i class="fas fa-check-circle mr-1"></i>Success</span></td>
+                            </tr>
+                            <tr class="hover:bg-gray-50 transition-colors">
+                                <td class="px-4 py-3 whitespace-nowrap font-medium">#102</td>
+                                <td class="px-4 py-3 whitespace-nowrap">Jane Smith</td>
+                                <td class="px-4 py-3 whitespace-nowrap font-semibold text-green-600">₹299</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-gray-600">2023-09-15</td>
+                                <td class="px-4 py-3 whitespace-nowrap"><span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold flex items-center w-fit"><i class="fas fa-check-circle mr-1"></i>Success</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            <section class="card p-6">
+                <div class="flex items-center mb-6">
+                    <i class="fas fa-chart-bar text-2xl text-red-600 mr-3"></i>
+                    <h3 class="text-xl font-semibold gradient-text">Analytics Overview</h3>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="stat-card p-6 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-3xl font-bold text-slate-700">150</p>
+                                <p class="text-sm text-gray-600 mt-1">Total Users</p>
+                            </div>
+                            <i class="fas fa-users text-3xl text-slate-600"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card green p-6 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-3xl font-bold text-emerald-700">500</p>
+                                <p class="text-sm text-gray-600 mt-1">Total Transactions</p>
+                            </div>
+                            <i class="fas fa-exchange-alt text-3xl text-emerald-600"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card yellow p-6 rounded-lg">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="text-3xl font-bold text-amber-700">₹50,000</p>
+                                <p class="text-sm text-gray-600 mt-1">Total Revenue</p>
+                            </div>
+                            <i class="fas fa-rupee-sign text-3xl text-amber-600"></i>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <footer class="bg-gray-900 text-white p-4 text-center relative z-10">
+        <p>&copy; 2023 Mobile Recharge App. All rights reserved.</p>
+    </footer>
+    <script src="api.js"></script>
+    <script>
+        // Load real-time analytics data
+        async function loadAnalytics() {
+            try {
+                const result = await api.getAnalytics();
+                if (result.success) {
+                    updateAnalyticsDisplay(result.analytics);
+                }
+            } catch (error) {
+                console.error('Failed to load analytics:', error);
+            }
+        }
+        
+        function updateAnalyticsDisplay(analytics) {
+            // Update statistics cards with error handling
+            try {
+                const userStat = document.querySelector('.stat-card p.text-slate-700');
+                if (userStat) userStat.textContent = analytics.totalUsers;
+                
+                const transactionStat = document.querySelector('.stat-card.green p.text-emerald-700');
+                if (transactionStat) transactionStat.textContent = analytics.totalTransactions;
+                
+                const revenueStat = document.querySelector('.stat-card.yellow p.text-amber-700');
+                if (revenueStat) revenueStat.textContent = `₹${analytics.totalRevenue.toLocaleString()}`;
+            } catch (error) {
+                console.error('Error updating analytics display:', error);
+            }
+        }
+        
+        // Real-time transaction updates
+        window.onNewTransaction = function(transaction) {
+            try {
+                const tbody = document.querySelector('tbody');
+                if (!tbody) return;
+                
+                const newRow = document.createElement('tr');
+                newRow.className = 'hover:bg-gray-50 transition-colors';
+                newRow.innerHTML = `
+                    <td class="px-4 py-3 whitespace-nowrap font-medium">#${transaction.id}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">New User</td>
+                    <td class="px-4 py-3 whitespace-nowrap font-semibold text-emerald-700">₹${transaction.amount}</td>
+                    <td class="px-4 py-3 whitespace-nowrap text-gray-600">${transaction.date}</td>
+                    <td class="px-4 py-3 whitespace-nowrap">
+                        <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-xs font-semibold flex items-center w-fit">
+                            <i class="fas fa-check-circle mr-1"></i>Success
+                        </span>
+                    </td>
+                `;
+                tbody.insertBefore(newRow, tbody.firstChild);
+                
+                // Remove old rows to keep table manageable
+                if (tbody.children.length > 10) {
+                    tbody.removeChild(tbody.lastChild);
+                }
+                
+                // Show notification
+                if (typeof showNotification === 'function') {
+                    showNotification(`New transaction: ₹${transaction.amount}`, 'info');
+                }
+            } catch (error) {
+                console.error('Error updating transaction display:', error);
+            }
+        };
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Wait for API to be available
+            if (typeof api !== 'undefined') {
+                loadAnalytics();
+                
+                // Refresh analytics every 30 seconds
+                setInterval(loadAnalytics, 30000);
+            } else {
+                console.error('API not available');
+            }
+        });
+    </script>
+</body>
+</html>
