@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscriptions - Mobile Recharge App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: 
+                linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(30, 41, 59, 0.9) 50%, rgba(51, 65, 85, 0.85) 100%),
+                url('https://images.unsplash.com/photo-1611224923853-80b023f02d71?ixlib=rb-4.0.3&auto=format&fit=crop&w=2339&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .subscription-card {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .subscription-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+        }
+        .subscription-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e11d48, #f59e0b, #10b981, #3b82f6);
+        }
+        .premium-badge {
+            background: linear-gradient(45deg, #ffd700, #ffed4e);
+            color: #1e293b;
+            animation: pulse 2s infinite;
+        }
+        .header-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
+        .btn-gradient {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-gradient:hover {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            transform: translateY(-2px);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <header class="header-gradient text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-2xl font-bold flex items-center">
+                <i class="fas fa-crown mr-2 text-yellow-400"></i>
+                Premium Subscriptions
+            </h1>
+            <nav>
+                <ul class="flex space-x-4">
+                    <li><a href="index.html" class="hover:underline">Home</a></li>
+                    <li><a href="dashboard.html" class="hover:underline">Dashboard</a></li>
+                    <li><a href="offers.html" class="hover:underline">Offers</a></li>
+                    <li><a href="login.html" class="hover:underline">Logout</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="flex-grow p-4">
+        <div class="container mx-auto max-w-7xl">
+            <!-- Current Subscription Status -->
+            <section class="card p-6 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-800">Your Current Plan</h2>
+                        <p class="text-gray-600">Manage your subscription and billing</p>
+                    </div>
+                    <div class="premium-badge px-4 py-2 rounded-full font-bold">
+                        <i class="fas fa-star mr-1"></i>PREMIUM
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-gradient-to-r from-emerald-500 to-emerald-600 text-white p-4 rounded-lg">
+                        <h3 class="font-semibold">Plan Type</h3>
+                        <p class="text-2xl font-bold">Premium Plus</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-600 text-white p-4 rounded-lg">
+                        <h3 class="font-semibold">Next Billing</h3>
+                        <p class="text-2xl font-bold">Dec 15, 2024</p>
+                    </div>
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-600 text-white p-4 rounded-lg">
+                        <h3 class="font-semibold">Monthly Cost</h3>
+                        <p class="text-2xl font-bold">₹299</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Available Subscription Plans -->
+            <section class="mb-8">
+                <h2 class="text-3xl font-bold text-white mb-6 text-center">Choose Your Perfect Plan</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Basic Plan -->
+                    <div class="subscription-card p-6 text-white">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-mobile-alt text-4xl mb-4 text-blue-400"></i>
+                            <h3 class="text-2xl font-bold mb-2">Basic</h3>
+                            <div class="text-4xl font-bold mb-2">₹99<span class="text-lg">/month</span></div>
+                            <p class="text-gray-300">Perfect for light users</p>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>5 Recharges per month</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Basic customer support</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Transaction history</li>
+                            <li class="flex items-center"><i class="fas fa-times text-red-400 mr-2"></i>Auto-recharge</li>
+                        </ul>
+                        <button onclick="selectSubscription('basic')" class="btn-gradient w-full py-3 rounded-lg font-semibold">Select Plan</button>
+                    </div>
+
+                    <!-- Premium Plan -->
+                    <div class="subscription-card p-6 text-white border-4 border-yellow-400 relative">
+                        <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-bold">
+                            MOST POPULAR
+                        </div>
+                        <div class="text-center mb-6">
+                            <i class="fas fa-star text-4xl mb-4 text-yellow-400"></i>
+                            <h3 class="text-2xl font-bold mb-2">Premium</h3>
+                            <div class="text-4xl font-bold mb-2">₹199<span class="text-lg">/month</span></div>
+                            <p class="text-gray-300">Best value for regular users</p>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Unlimited recharges</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Priority customer support</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Auto-recharge feature</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Cashback rewards</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Bill reminders</li>
+                        </ul>
+                        <button class="bg-yellow-400 text-black w-full py-3 rounded-lg font-semibold hover:bg-yellow-500 transition-colors">Select Plan</button>
+                    </div>
+
+                    <!-- Premium Plus Plan -->
+                    <div class="subscription-card p-6 text-white">
+                        <div class="text-center mb-6">
+                            <i class="fas fa-crown text-4xl mb-4 text-purple-400"></i>
+                            <h3 class="text-2xl font-bold mb-2">Premium Plus</h3>
+                            <div class="text-4xl font-bold mb-2">₹299<span class="text-lg">/month</span></div>
+                            <p class="text-gray-300">Ultimate experience</p>
+                        </div>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Everything in Premium</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Family sharing (5 accounts)</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Exclusive offers</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>24/7 dedicated support</li>
+                            <li class="flex items-center"><i class="fas fa-check text-green-400 mr-2"></i>Advanced analytics</li>
+                        </ul>
+                        <button onclick="selectSubscription('premium-plus')" class="btn-gradient w-full py-3 rounded-lg font-semibold">Select Plan</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Subscription Benefits -->
+            <section class="card p-8">
+                <h2 class="text-2xl font-bold text-center mb-8 text-slate-800">Why Choose Premium?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-bolt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Instant Recharge</h3>
+                        <p class="text-gray-600 text-sm">Lightning-fast recharge processing</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-shield-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Secure Payments</h3>
+                        <p class="text-gray-600 text-sm">Bank-grade security for all transactions</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-gift text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">Exclusive Offers</h3>
+                        <p class="text-gray-600 text-sm">Special discounts and cashback</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-headset text-white text-2xl"></i>
+                        </div>
+                        <h3 class="font-semibold mb-2">24/7 Support</h3>
+                        <p class="text-gray-600 text-sm">Round-the-clock customer assistance</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white p-4 text-center">
+        <p>&copy; 2024 Mobile Recharge App. All rights reserved.</p>
+    </footer>
+    <script src="api.js"></script>
+    <script>
+        async function selectSubscription(planId) {
+            try {
+                if (typeof showNotification === 'function') {
+                    showNotification('Processing subscription upgrade...', 'info');
+                }
+                
+                const result = await api.upgradeSubscription(planId);
+                
+                if (result.success) {
+                    if (typeof showNotification === 'function') {
+                        showNotification(`Successfully upgraded to ${result.subscription.name}!`, 'success');
+                    }
+                    
+                    setTimeout(() => {
+                        location.reload();
+                    }, 2000);
+                } else {
+                    if (typeof showNotification === 'function') {
+                        showNotification(result.message || 'Subscription upgrade failed', 'error');
+                    }
+                }
+            } catch (error) {
+                if (typeof showNotification === 'function') {
+                    showNotification('Subscription upgrade failed. Please try again.', 'error');
+                }
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                if (typeof api !== 'undefined') {
+                    const userResult = await api.getUserProfile();
+                    if (userResult.success && userResult.user) {
+                        const user = userResult.user;
+                        const badge = document.querySelector('.premium-badge');
+                        if (badge) {
+                            if (user.subscription === 'premium-plus') {
+                                badge.innerHTML = '<i class="fas fa-crown mr-1"></i>PREMIUM PLUS';
+                            } else if (user.subscription === 'premium') {
+                                badge.innerHTML = '<i class="fas fa-star mr-1"></i>PREMIUM';
+                            } else {
+                                badge.innerHTML = '<i class="fas fa-user mr-1"></i>BASIC';
+                                badge.className = 'bg-gray-400 text-white px-4 py-2 rounded-full font-bold';
+                            }
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error('Failed to load user profile:', error);
+            }
+        });
+    </script>
+</body>
+</html>

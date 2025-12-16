@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test - Mobile Recharge App</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold mb-8">Mock API Test</h1>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Login Test -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Login Test</h2>
+                <button id="testLogin" class="bg-blue-500 text-white px-4 py-2 rounded">Test Login</button>
+                <div id="loginResult" class="mt-4 p-3 bg-gray-50 rounded"></div>
+            </div>
+
+            <!-- Recharge Test -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Recharge Test</h2>
+                <button id="testRecharge" class="bg-green-500 text-white px-4 py-2 rounded">Test Recharge</button>
+                <div id="rechargeResult" class="mt-4 p-3 bg-gray-50 rounded"></div>
+            </div>
+
+            <!-- Subscription Test -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Subscription Test</h2>
+                <button id="testSubscription" class="bg-purple-500 text-white px-4 py-2 rounded">Test Upgrade</button>
+                <div id="subscriptionResult" class="mt-4 p-3 bg-gray-50 rounded"></div>
+            </div>
+
+            <!-- Analytics Test -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Analytics Test</h2>
+                <button id="testAnalytics" class="bg-red-500 text-white px-4 py-2 rounded">Test Analytics</button>
+                <div id="analyticsResult" class="mt-4 p-3 bg-gray-50 rounded"></div>
+            </div>
+
+            <!-- Wallet Test -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Wallet Test</h2>
+                <button id="testWallet" class="bg-yellow-500 text-white px-4 py-2 rounded">Add Money</button>
+                <div id="walletResult" class="mt-4 p-3 bg-gray-50 rounded"></div>
+            </div>
+
+            <!-- Offers Test -->
+            <div class="bg-white p-6 rounded-lg shadow">
+                <h2 class="text-xl font-semibold mb-4">Offers Test</h2>
+                <button id="testOffers" class="bg-indigo-500 text-white px-4 py-2 rounded">Get Offers</button>
+                <div id="offersResult" class="mt-4 p-3 bg-gray-50 rounded"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="api.js"></script>
+    <script>
+        // Test Login
+        document.getElementById('testLogin').addEventListener('click', async () => {
+            const result = await api.login('john@example.com', 'password123');
+            document.getElementById('loginResult').innerHTML = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        });
+
+        // Test Recharge
+        document.getElementById('testRecharge').addEventListener('click', async () => {
+            const validateResult = await api.validateNumber('9876543210', 'airtel');
+            const rechargeResult = await api.processRecharge({ amount: 199, phone: '9876543210' });
+            document.getElementById('rechargeResult').innerHTML = `
+                <strong>Validation:</strong><pre>${JSON.stringify(validateResult, null, 2)}</pre>
+                <strong>Recharge:</strong><pre>${JSON.stringify(rechargeResult, null, 2)}</pre>
+            `;
+        });
+
+        // Test Subscription
+        document.getElementById('testSubscription').addEventListener('click', async () => {
+            const result = await api.upgradeSubscription('premium');
+            document.getElementById('subscriptionResult').innerHTML = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        });
+
+        // Test Analytics
+        document.getElementById('testAnalytics').addEventListener('click', async () => {
+            const result = await api.getAnalytics();
+            document.getElementById('analyticsResult').innerHTML = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        });
+
+        // Test Wallet
+        document.getElementById('testWallet').addEventListener('click', async () => {
+            const result = await api.addMoney(500);
+            document.getElementById('walletResult').innerHTML = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        });
+
+        // Test Offers
+        document.getElementById('testOffers').addEventListener('click', async () => {
+            const result = await api.getOffers();
+            document.getElementById('offersResult').innerHTML = `<pre>${JSON.stringify(result, null, 2)}</pre>`;
+        });
+
+        // Show initial user profile
+        document.addEventListener('DOMContentLoaded', async () => {
+            const profile = await api.getUserProfile();
+            showNotification(`Loaded user: ${profile.user.name}`, 'info');
+        });
+    </script>
+</body>
+</html>
